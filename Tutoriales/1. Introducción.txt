@@ -1,0 +1,20 @@
+SASS es un preprocesador, que nos permite escribir código CSS de una manera más dinámica,
+agregando sintaxis de un lenguaje de programacion, 
+incluyendo variables. funciones, módulos y distintos tipos de valores
+
+¿Por que SASS?
+- Totalmente compatible con CSS
+- Codigo mas rapido
+- Muchos framework se construyen en SASS
+- Hay mucha documentacióm
+
+Conocimientos previos
+- CSS intermedio
+- Conocimiento de algun lenguaje de programación
+
+.sass vs scss
+El procesados sass tiene 2 sintaxis , .sass se define por no usar llaves y usar tabuladores como 
+Python, scss es bastante similar a CSS  solo agrega funcionalidades extra y usa llaves
+
+https://sass-lang.com/
+ 

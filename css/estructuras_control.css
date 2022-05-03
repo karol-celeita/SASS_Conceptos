@@ -1,0 +1,100 @@
+.hero {
+  grid-template-columns: 1fr;
+}
+
+.main {
+  display: flex;
+}
+.main > * {
+  width: 12.5%;
+}
+
+.main2 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.selector-dinamico {
+  color: crimson;
+}
+
+.selector-dinamico {
+  color: crimson;
+}
+
+.selector-dinamico {
+  color: crimson;
+}
+
+.selector-dinamico {
+  color: crimson;
+}
+
+.selector-indice {
+  color: teal;
+}
+
+.selector-indice {
+  color: teal;
+}
+
+.selector-indice {
+  color: teal;
+}
+
+.selector-indice {
+  color: teal;
+}
+
+.selector-indice {
+  color: teal;
+}
+
+.m-1 {
+  margin: 1em;
+}
+
+.m-2 {
+  margin: 2em;
+}
+
+.m-3 {
+  margin: 3em;
+}
+
+.m-4 {
+  margin: 4em;
+}
+
+.m-5 {
+  margin: 5em;
+}
+
+.primary {
+  color: crimson;
+}
+
+.secondary {
+  color: steelblue;
+}
+
+.shadow {
+  box-shadow: 1px 1px solid #000;
+}
+
+.selector {
+  transition-property: color;
+  transition-duration: 3s;
+}
+
+.selector {
+  transition-property: clip-path;
+  transition-duration: 2s;
+}
+
+.selector {
+  transition-property: margin;
+  transition-duration: 1s;
+}
+
+/*# sourceMappingURL=estructuras_control.css.map */

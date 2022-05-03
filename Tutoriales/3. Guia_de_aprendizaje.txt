@@ -1,0 +1,14 @@
+Esta es la guia para iniciar en SASS:
+1. Leer la introduccion
+2. Hacer la instalacion
+3. Variables
+4. Interpolacion
+5. Nesting
+6. Operaciones y numeros
+7. Tipos de datos
+8. Estructuras de control
+9.  Mixins
+10. Funciones
+11. Modulos en SASS
+12. Extend en SASS
+

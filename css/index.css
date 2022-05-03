@@ -1,0 +1,33 @@
+text {
+  font-family: cursive;
+}
+
+.title {
+  font-size: 2.5em;
+}
+
+.title-two {
+  font-size: 1.25em;
+}
+
+.suma {
+  font-size: 180px;
+}
+
+/* Podemos importar modulos asi, no es necesario poner la extension del archivo */
+/*
+Asi se deben hacer los comentarios en SASS para que se muestren en CSS
+*/
+/* Variables: Pueden ser con guion medio o bajo pues sass no distingue cada uno 
+No se compilan en el CSS pues no son nativas de este, y no necesitan estar dentro de un selector
+Si se tiene un error no se compila el codigo*/
+my_title {
+  color: crimson;
+}
+
+/* Para llamar a una variable importada debemos tener el nombre del modulo antes*/
+.my_title_two {
+  color: pink;
+}
+
+/*# sourceMappingURL=index.css.map */

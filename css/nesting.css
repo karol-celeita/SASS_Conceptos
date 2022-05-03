@@ -1,0 +1,64 @@
+.hero {
+  background-color: rebeccapurple;
+}
+
+.hero nav {
+  display: flex;
+}
+
+.hero nav li {
+  list-style: none;
+}
+
+.hero nav li a {
+  text-decoration: none;
+}
+
+.hero {
+  background-color: rebeccapurple;
+}
+.hero nav {
+  display: flex;
+}
+.hero nav li {
+  list-style: none;
+}
+.hero nav li a {
+  text-decoration: none;
+}
+
+.hero, .main {
+  font-size: 1rem;
+}
+.hero .cta, .main .cta {
+  color: black;
+}
+
+.card > item {
+  display: none;
+}
+
+.menu + .close {
+  color: aqua;
+}
+.menu .open {
+  color: antiquewhite;
+}
+
+.card {
+  color: teal;
+}
+.card :hover {
+  color: crimson;
+}
+.card:hover {
+  color: crimson;
+}
+:not(.card) {
+  opacity: 0;
+}
+.card__title {
+  text-align: center;
+}
+
+/*# sourceMappingURL=nesting.css.map */

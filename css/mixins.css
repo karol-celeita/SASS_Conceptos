@@ -1,0 +1,85 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-screen {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+}
+
+.footer-screen {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(8, 1fr);
+  gap: 50px;
+}
+
+.hero {
+  display: grid;
+}
+.hero__img {
+  grid-column: 1/1;
+}
+
+.hero-images {
+  background-image: url("uno.png");
+  background-repeat: "no-repeat";
+  background-size: "cover";
+}
+
+h1 {
+  opacity: 0;
+}
+
+.id-cta {
+  opacity: 0;
+}
+
+.h3 {
+  opacity: 0;
+}
+
+a {
+  opacity: 0;
+}
+
+.hero-layout {
+  display: grid;
+  color: red;
+}
+
+.layouts {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+}
+@media (max-width: 500px) {
+  .layouts {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+  }
+}
+
+.main {
+  display: flex;
+}
+.main > * {
+  width: 12.5%;
+}
+
+.main2 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+/*# sourceMappingURL=mixins.css.map */

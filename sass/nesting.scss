@@ -1,0 +1,96 @@
+// En lugar de repetir los selectores podemos escribirlos una sola vez y anidarlos mas adelante
+
+.hero{
+    background-color: rebeccapurple;
+}
+
+.hero nav{
+    display: flex;
+}
+
+.hero nav li {
+    list-style: none;
+}
+
+.hero nav li a {
+    text-decoration: none;
+}
+
+// Esto se vuelve tedioso, por eso usamos el nesting:
+
+.hero{
+    background-color: rebeccapurple;
+
+    // Lo ponemos dentro y sass entiende que es un selector descendiente
+    nav {
+        display: flex; 
+        li{
+            list-style: none;
+            a{
+                text-decoration: none;
+            }
+        }
+    }
+
+}
+
+// No es recomendable bajar muchos niveles en sass porque se demora mucho renderizando y puede ser muy esoecifico
+
+.hero, .main{
+    font-size: 1rem;
+
+    .cta{
+        color: black;
+    }
+}
+
+// Tambien podemos usar las mismas reglas de selectores en CSS
+// Como por ejemplo los selectores de hijo directo:
+
+.card >{
+    item{
+        display: none;
+    }
+}
+//Para hermanos adyacentes o generales
+
+.menu{
+   +{
+    .close{
+        color: aqua;
+    }
+
+    // Puedo agrupar los selectores que necesito
+    }
+    .open{
+        color: antiquewhite;
+    }
+    // Si no quiero que sea hermano directo no lo incluyo en el +
+}
+
+// PARENT ELEMENT SASS
+// Es un selector nativop y propio de sass, y hace referencia al padre directo
+
+.card{
+    color: teal;
+
+    // Por ejemplo, esto no me sirve porque queda con un espacio, entonces debo llamar a la clase padre
+    :hover{
+        color: crimson;
+    }
+
+    //Aqui referenciamos directamente a la clase padre, debe estar junto, sin espacios
+    &:hover{
+        color: crimson;
+    }
+
+    //Tambien ouede ser como parametro
+    :not(&){
+        opacity: 0;
+    }
+
+    // Podemos agregar texto concatenado con esto
+    &__title{
+        text-align: center;
+    }
+}

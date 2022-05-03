@@ -1,0 +1,45 @@
+.title {
+  text-align: "center";
+}
+
+.grid {
+  grid-template-areas: header header header;
+  grid-template-columns: "front front front";
+}
+
+.grid {
+  margin-top: 10px;
+  margin-left: 40px;
+  margin-right: 20px;
+  margin-bottom: 30px;
+}
+
+h1 {
+  color: royalblue;
+}
+
+.titulo {
+  font-size: 4em;
+}
+
+.subtitulo {
+  font-size: 3em;
+}
+
+.parrafo {
+  font-size: 1em;
+}
+
+.cta {
+  font-size: 1.5em;
+}
+
+.copy {
+  font-size: 1em;
+}
+
+.grid {
+  display: grid;
+}
+
+/*# sourceMappingURL=tipos_datos.css.map */

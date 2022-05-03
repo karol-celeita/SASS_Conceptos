@@ -1,0 +1,47 @@
+
+/* Podemos importar modulos asi, no es necesario poner la extension del archivo */
+@use 'variables' with(
+    // Aqui sobreescribimos la variable default
+    $second: pink
+);
+
+@use 'sass:meta';
+@use 'funciones';
+
+/*
+Asi se deben hacer los comentarios en SASS para que se muestren en CSS
+*/
+
+/* Variables: Pueden ser con guion medio o bajo pues sass no distingue cada uno 
+No se compilan en el CSS pues no son nativas de este, y no necesitan estar dentro de un selector
+Si se tiene un error no se compila el codigo*/
+
+$primary: crimson;
+
+my_title{
+    color: $primary; 
+}
+
+/* Para llamar a una variable importada debemos tener el nombre del modulo antes*/
+
+.my_title_two{
+    color: variables.$second;
+}
+
+
+//Esta etiqueta permite validar y enviar datos por consola, tambien permite interpolar
+@debug 100* 100;
+
+@debug "El valor es igual a  #{100* 100}";
+
+// conocer un tipo de dato
+$string-espacios: front front front;
+@debug meta.type-of($string-espacios);
+
+
+// Para llamar a una funcion desde otro archivo se importa y se llama
+//@use 'funciones';
+
+//.hero-title{
+//    font-size: funciones.pixelesToEM(100px);
+//}

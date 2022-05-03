@@ -1,0 +1,118 @@
+@use 'sass:math';
+
+
+// IF
+
+// Permite controlar el flujo de control
+$display:grid;
+
+.hero{
+    @if $display == grid{
+        grid-template-columns: 1fr;
+    }
+
+    @else{
+        display: $display;
+    }
+}
+
+//------------------------------
+
+@mixin crearLayout ($display, $columnas){
+    
+    @if($display == grid){
+        display: grid;
+        grid-template-columns: repeat($columnas,1fr);
+    }
+    @else if($display==flex){
+        display:flex;
+        $tamanoColumnas:math.div(100%, $columnas);
+        & > *{
+            width: $tamanoColumnas;
+        }
+    }
+
+    @else{
+        display: block;
+        grid-template-columns: repeat($columnas,1fr);
+    }
+}
+
+.main{
+    @include crearLayout(flex,8 )
+}
+
+.main2{
+    @include crearLayout(grid,4 )
+}
+
+
+// FOR
+
+// Permite hacer que el codigo se repita un numero n de veces
+
+@for $dinamico from 1 to 5 { // Puede ser un indice descendente o ascendente
+    .selector-#{dinamico}{
+        color:crimson;
+    }
+}
+
+//Con el parametro TO siempre sera 1 menos que el valor limite EJ : to 5 = 4 loops
+// Para que quede con el numero total usamos throught
+
+@for $indice from 1 through 5 { // Puede ser un indice descendente o ascendente
+    .selector-#{indice}{
+        color:teal;
+    }
+}
+
+//CICLO EACH
+
+// Permite recorre las listas y los mapas, ideal para estilos repetitivos con pequeñas variaciones
+
+//Listas con each
+$margenes: 1 2 3 4 5;
+
+@each $margen in $margenes{
+    .m-#{$margen}{
+       margin: $margen*1em;
+    }
+}
+// De esta manera podriamos ir al html y poner una clase margen a un elemento html
+
+
+// Maps con each
+$estilos:(
+    "primary":crimson,
+    "secondary": steelblue,
+    "shadow":1px 1px solid #000
+);
+
+@each $clave, $valor in $estilos {
+    .#{$clave}{
+        @if($clave != 'shadow'){
+            color: $valor;
+        }
+        @else{
+            box-shadow:$valor
+        }
+    }
+}
+
+
+// Listas anidadas y multiples con each
+$lista:
+    "card" color 3s,
+    "nav" clip-path 2s,
+    "footer" margin 1s;
+
+@each $selector, $propiedad, $duracion in $lista{
+    .#{selector}{
+        transition-property: $propiedad;
+        transition-duration: $duracion;
+    }
+}
+
+
+//WHILE
+//Esta estructura tambien existe pero usa muchos recursos asi que no se usa casi nada

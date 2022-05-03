@@ -1,0 +1,22 @@
+//En SASS podemos crear software modular, para evitar crear grandes archivos y mantener todo organizado
+
+// Se crean partials o modulos , creando un archi y nombrarlo con un guion bajo
+// Si no le pongo el guion bajo se compilara y la idea es que solo sea un archivo compilado y los demas sean modulos de este
+// Usamos la etiqueta  @use 'colores';
+
+// Podemos crear variables o funciones privadas, para ello se pone un medio o guion bajo para volverla privada
+
+@function _sumarElementos($valores...){
+    $suma :0;
+    @each $elementoSuma in $valores{
+        $suma:$suma + $elementoSuma;
+    }
+
+    @return $suma *1px;
+}
+
+// Podemos definir variables por defecto que al importar podemos cambiar
+// Para esto solo debemos usar el !primary  de esta manera (Ver ejemplo en el index)
+
+// forward se encarga de prepara un elemeto para ser usado y use usa el elemento
+// Podemos usar alias en forward

@@ -1,0 +1,188 @@
+@use 'sass:string';
+@use 'sass:meta';
+@use 'sass:list';
+@use 'sass:map';
+
+
+
+
+
+//-------------------------------------------------------
+// STRINGS
+
+//Hay 2 tipos: quoted string o texto en comillas '', " " y unquoted string o texto sin comillas, 
+// No se recomienda interpolar para quitar comillas, si es necesario se usa la libreria @use @use 'sass:string'
+
+$string-comillas: "header header header";
+$string-sincomillas : center;
+$string-espacios: front front front;
+.title{
+     text-align: string.quote($string-sincomillas);
+}
+
+.grid{
+    grid-template-areas: string.unquote($string-comillas);
+
+    //NO se puede convertir a comillas si existen espacios en ese caso, si interpolamos:
+    grid-template-columns: '#{$string-espacios}';
+
+}
+
+
+
+//-------------------------------------------------------
+//COLORES
+
+// SAS reconoce cualquier color como un tipo de dato color, incluye hsl, rgb, hexadecimales, hsla, rgba, color keywords
+$color : #000; // Type: color
+
+
+//-------------------------------------------------------
+// LISTAS
+
+// Contienen una secuencia de valores, separados por comas o por espacios, siempre y cuando sean coherentes
+//Tambien se pueden escribir entre corchetes
+
+$boxshadow: 1px 1px 20px; // Type : list
+
+//Podemos obtener el valor de una listo de acuerdo a su posicion con la libreria @use 'sass:list';
+//Los índices empiezan desde 1
+
+$margen: 10px 20px 40px 30px;
+
+.grid{
+    margin-top: list.nth($margen,1);
+    margin-left: list.nth($margen,3);
+    margin-right: list.nth($margen,2);
+    margin-bottom: list.nth($margen,4);
+}
+
+// Si yo quiero añadir elementos a una lista despues de ya creada debo usar @use 'sass:list'
+
+$margins: 10px, 6px, 8px;
+$nuevalista: list.append($margins, 7px);
+
+
+//Las listas en sass son inmutables es decir debo crear una nueva variable con la lista siempre que añdo un nuevo elemento
+//Para conocer la posicion de un elemento, usamos index:
+
+$colores-lista:red,green, yellow;
+@debug list.index($colores-lista,yellow);
+
+
+
+//-------------------------------------------------------
+// MAPS O DICCIONARIOS
+
+// Son como los diccionarios: clave- valor,las keys no se repiten pero los valores si
+// Las keys van entre comillas y se deben separar por comas.
+
+$colores:(
+    "key":crimson,
+    "primary":royalblue,
+    "secondary": crimson,
+    "buttons":teal
+);
+
+
+
+// Para poderlos invocar usamos la libreria @use 'sass:map' de la siguiente manera:
+// Sintaxis: map.get($mapa, "key")
+h1{
+    color: map.get($colores, "primary");
+}
+
+
+
+//Modificar mapas
+
+//Los mapas son inmutables, para modificar un elemento hay que crear uno nuevo
+// Sintaxis $newMapa: map.set($mapa, 'key', 'value') Para argegar y para modificar
+
+$textos:(
+    'titulo':4,
+    'subtitulo':3,
+    'parrafo':1,
+    'cta':1.5
+);
+
+@mixin recorrerMapa ($mapa){
+    @each $clave, $valor in $mapa{
+        .#{$clave}{
+            font-size: $valor * 1em;
+        }
+    }
+}
+
+
+$textos2: map.set($textos, "copy", 1);
+@include recorrerMapa($textos2);
+
+//Fusionar mapas
+
+$colores-fusion:(
+    "key":crimson,
+    "primary":royalblue,
+    "secondary": crimson,
+    "buttons":teal
+);
+
+$textos-fusion:(
+    'titulo':4em,
+    'subtitulo':3em,
+    'parrafo':1em,
+    'cta':1.5em
+);
+
+$estilosGenerales: map.merge($colores-fusion,$textos-fusion);
+
+@debug $estilosGenerales;
+
+
+//-------------------------------------------------------
+// VALORES BOOLEANOS
+
+//Son valores lógicos, solo pueden ser true o false.Todos los valores que podamos poner a una variable son true, solo false y null son considerados falsos
+
+$condicional:"Hola mundo";
+
+// Este if compara al elemento si exite la pone como true, si no sera false
+
+@if($condicional){
+    .grid{
+        display: grid;
+    }
+}
+
+@else{
+    .flexbox{
+        display: flex;
+    }
+}
+
+
+
+// OPERADORES RELACIONALES
+
+// Estas expresiones devuelven un valor booleano
+@debug 100 > 80;
+@debug 100 < 101;
+@debug 100 >= 80;
+@debug 100 <= 90;
+@debug hola == "hola";
+@debug 100px == 80px;
+@debug #000 == rgb(0,0,0);
+@debug 100 != 80;
+
+
+
+// OPERADORES BOOLEANOS
+
+// and
+//@if ($numero ==1 and $primary)
+
+// or
+//@if ($numero ==1 or $primary)
+
+// not
+//@if (not $primary)

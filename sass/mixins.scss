@@ -1,0 +1,168 @@
+@use 'sass:meta';
+@use 'sass:math';
+
+
+// Los mixins definen estilos que pueden ser reutilixados a lo largo de todo el codigo
+//Evitando el uso de clases genericas
+
+@mixin center{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+//Puedo llamarlo cuantas veces sea necesario
+//Deben estar creados antes de ser invocados, y se invocan con @include
+
+.header{
+    @include center;
+}
+
+.footer{
+    @include center;
+}
+
+
+// Los mixins pueden tener argumentos:
+
+@mixin crear-grid($rows, $columns, $gap){
+    display: grid;
+    grid-template-columns: repeat($rows, 1fr);
+    grid-template-columns: repeat($columns, 1fr);
+    gap: $gap;
+}
+
+.header-screen{
+    @include crear-grid(6,5,20px )
+}
+
+// Tambien puedo pasar variableas a los parametros
+
+$filas:5;
+$columnas:8;
+$gutters:50px;
+
+.footer-screen{
+    @include crear-grid($filas,$columnas,$gutters )
+}
+
+
+//VALORES OPCIONALES
+// Para que no sean obligatorios algunos parametros puedo indicar un valor en el mixin 
+// De este modo indicamos que puede ser opcional, pues ya existe un valor por default
+
+@mixin grid-generator($selector, $columna-i:1, $columna-t:1){
+
+    display:grid;
+    &__#{$selector}{
+        grid-column: #{$columna-i} / #{$columna-t};
+    }
+
+}
+
+//Aqi no fue necesario llenar los demas parametros
+.hero{
+    @include grid-generator(img)
+}
+
+//SHORTHAND EN MIXINS
+
+@mixin addImage($img, $repeat,$size){
+
+    //Para los shorthhand entre llaves añadimos la propiedad
+    background: {
+        image:url($img);
+        repeat:$repeat;
+        size: $size;
+    };
+}
+
+.hero-images{
+    @include addImage('uno.png', 'no-repeat','cover')
+}
+
+//ARGUMENTOS INDEFINIDOS
+
+// Podremos pasar una lista de argumentos o una lista de n valores que no conozcamos
+// Para hacerlo solo debemos poner los tres puntos despues del argumento $valor...
+
+@mixin agregarTransicion($propiedad, $valor, $selectores...){
+    @debug $selectores;
+    @each $selector in $selectores{
+        #{$selector}{
+            #{$propiedad}: $valor;
+        }
+    }
+}
+
+@include agregarTransicion(opacity, 0 , h1,'.id-cta','.h3',a);
+
+
+// Podemos crear mapas implicitos 
+
+@mixin crear-layout($lista...){
+    @each $propiedad, $valor in meta.keywords($lista){
+        #{$propiedad}: $valor
+    }
+}
+
+.hero-layout{
+    @include crear-layout($display:grid, $color:red);
+}
+
+
+//CONTENT EN MIXINS
+// Podemos enviar bloques de contenido fuera de un argumento con la regla @content
+
+@mixin crear-contenido($rows, $columns){
+    display: grid;
+    grid-template-columns: repeat($columns, 1fr);
+    grid-template-rows: repeat($rows, 1fr);
+
+    @media(max-width:500px){
+        //Con esta etiqueta modificamos el flujo  si tener que ser el mismo de los argumentos
+        @content; //Aqui se agrega el bloque de contenido
+    }
+}
+
+
+.layouts{
+    @include crear-contenido(5,6){
+
+        //Este es el bloque de contenido, desde aqui no podemos acceder a las variables del mixin a menos que usemos la palabra using
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(4,1fr);
+    }
+}
+
+
+//CONDICIONALES CON MIXINS
+//Podemos crear un mixin que cree columnas dinamicamente por medio de un if
+
+@mixin crearLayout ($display, $columnas){
+    
+    @if($display == grid){
+        display: grid;
+        grid-template-columns: repeat($columnas,1fr);
+    }
+    @else if($display==flex){
+        display:flex;
+        $tamanoColumnas:math.div(100%, $columnas);
+        & > *{
+            width: $tamanoColumnas;
+        }
+    }
+
+    @else{
+        display: block;
+        grid-template-columns: repeat($columnas,1fr);
+    }
+}
+
+.main{
+    @include crearLayout(flex,8 )
+}
+
+.main2{
+    @include crearLayout(grid,4 )
+}

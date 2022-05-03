@@ -1,0 +1,60 @@
+@use 'sass:math';
+
+// FUNCIONES
+
+//Tambien permiten reutilizar codigo pero se deben usar para definir operaciones en sass
+// Podemos pasar múltiples argumentos 
+
+@function pixelesToEmOne($pixeles){
+    $unidad: math.div($pixeles,1px); // Lo dividimos por 1 px para que se suprima la unidad
+    $resultado: math.div($unidad,16); // Por 16  que es el factor de conversion normalmente
+
+
+    // Todas las funciones deben llevar un return
+    @return $resultado * 1em; // Para que ponga la unidad de salida
+}
+
+@debug pixelesToEmOne(16px);
+
+.title{
+    font-size: pixelesToEmOne(40px);
+}
+
+
+// Podemos pasar múltiples ARGUMENTOS , y volverlos opcionales
+//Para pasar un argumento opcional de primero hay que nombrarlo como en el argumento
+
+@function pixelesToEmTwo($pixeles, $font-size:16px){
+    $unidad: math.div($pixeles,1px); 
+    $current-font: math.div($font-size,1px);
+
+    $resultado: math.div($unidad,$current-font); 
+
+
+    // Todas las funciones deben llevar un return
+    @return $resultado * 1em; // Para que ponga la unidad de salida
+}
+
+.title-two{
+
+    font-size: pixelesToEmTwo(40px,$font-size:32px);
+}
+
+//Tambien recibe listas como argumentos
+
+@function sumarElementos($valores...){
+    
+    $suma:0;
+    
+    @each $elementoSuma  in $valores {
+        $suma: $suma + $elementoSuma;
+    }
+
+    @return $suma *1px;
+}
+
+.suma{
+    font-size: sumarElementos(40,50,90);
+}
+
+

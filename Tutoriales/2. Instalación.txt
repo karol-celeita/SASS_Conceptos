@@ -1,0 +1,19 @@
+PASOS
+
+1. Debemos instalar node.js LTS
+2. Abrimos una terminal y escribimos node -v, si arroja la version es porque quedo bien instalado
+3. Escribimos npm init para iniciar los paquetes y damos enter a todo
+        PS C:\Users\buho\Documents\SASS> node -v
+        v16.14.2
+        PS C:\Users\buho\Documents\SASS> npm init
+4. Creara un archivo llamado package.json
+5. Escribimos npm install sass --save-dev para agregar SASS al proyecto, se creara la carpeta node_modules
+6. Instalamos SASS globalmente con npm install -g sass
+7. Creamos la carpeta SASS donde estaran nuestros archivos
+8. Para configurar que se compilen los archivos y para arrancar la consola usamos el siguiente comando
+
+        PS C:\Users\buho\Documents\SASS> sass --watch sass:css
+        Mensaje si sale todo bien:  Compiled sass\index.scss to css\index.css.
+
+   Esto creara la carpeta css automaticamente, es recomendable hacerlo en carpeta aparte, pues 
+   asi cada archivo tendra su archivo compilado de manera organizada

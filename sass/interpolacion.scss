@@ -1,0 +1,13 @@
+//Permite asignar selectores a las variables, También podremos utilizarlas para formar el nombre de las propiedades
+$selector : '.hero';
+$propiedad: 'grid-template-columns';
+$rem : 16px;
+$valor :4;
+//Para poderlas llamar hay que encerrarlo entre: #{}
+//Convertira las variables en cadenas de texto sin comillas
+
+#{$selector}{
+    color:  $selector; //Si no lo encierro no leera correctamente
+    #{$propiedad}: $rem * 4; // En este caso no es s interpolarla porque convierte el nuemero en cadena de texto
+    #{$propiedad}: #{$valor}rem // Esto es una opción pero no es la ideal, ni buena practica; 
+}

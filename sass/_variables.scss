@@ -1,0 +1,35 @@
+// Estos son Partials, se nombran con un guion bajo antes del nombre del archivo
+// y de este modo no se compilara en css pues le indicamos que sera un archivo usado solo por 
+// sass , como es el caso de las variables
+
+$second: aquamarine !default;
+
+// Podemos configurarlo como un valor por default  para que se pueda modificar  cuando se importe
+//con default
+
+//SCOPE
+// Dependiendo de donde se coloquen las variables se puede acceder a ellas
+// esto sucede por el scope de las variables, por esto deben ser declaradas en la parte mas alta de la hoja de estilos
+//Esta variables quedaran de forma global, pero tambien las podemos dejar en un selector de forma local
+
+//OPERACIONES
+//Podemos configurar una varible global y sobreescribirla en una variable local
+$global : Arial; 
+
+text{
+    $global:cursive !global;
+    font-family: $global;
+    //Lo que pongamos despues de esto tendra el nuevo valor
+}
+
+//Tambien podemos hacer operaciones pero deben ser unidades enteras 
+// como ejemplo 2px - 1 , no 2px -1rem
+
+$letra_multiplicacion:2px * 3;
+$letra_resta:28-2;
+$letra_suma: 3rem +1;
+
+
+//Debemos usar las variables solo cuando veamos que se actualizan
+//Con las custom properties se puede acceder con JS con sass no se puede
+

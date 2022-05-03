@@ -1,0 +1,42 @@
+@use 'sass:math';
+
+//NUMEROS
+// Sass tienen dos tipos: Enteros y los numeros con unidades
+$variable:2;
+$pixeles: 3rem;
+
+//Podemos mezclar numeros con unidades siempre y cuando sean compatibles
+// Podemos mezclar enteros con numeros con unidades sin ningun problema
+
+body{
+
+    animation-duration: 10s+100ms; // Se puede sumar pero no multiplicar
+    animation-duration: 40px - 10px; // No admite multiplicaciones
+    // px +em no sirve, pero px + cm si sirve
+}
+
+
+// DIVISIONES
+//No funcionan de manera directa, tienen que ser por medio de una variable
+
+$variable: 2/3;
+
+body{
+    transition-duration: $variable;
+}
+
+//  No es una buena practica dividir de este modo pues por ejemplo:
+body{
+    grid-template-columns: $variable; // No pone el valor real sino el recultado de la division
+}
+
+// sass quitara esta forma de division por ello la forma correcta de dividir es la siguiente
+
+//Usamos la libreria
+//@use 'sass:math';
+
+body{
+    font-size: math.div(25,5)*1px;
+}
+
+
